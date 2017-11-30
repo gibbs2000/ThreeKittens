@@ -8,7 +8,6 @@ import java.util.LinkedList;
 
 public abstract class Actor implements Comparable<Actor> {
 	private String name;
-	@SuppressWarnings("unused")
 	private Queue<Message> mailbox;
 	private MailServer mailServer;
 
@@ -37,23 +36,21 @@ public abstract class Actor implements Comparable<Actor> {
 	 * does, false if it doesn't.
 	 */
 	public boolean moreMail() {
-		return false;
-		// TODO method
+		return !mailbox.isEmpty();
 	}
 
 	/**
 	 * Adds msg to this Actor's mailbox.
 	 */
 	public void receive(Message msg) {
-		// TODO method
+		mailbox.add(msg);
 	}
 
 	/**
 	 * Removes and returns one message from this Actor's mailbox.
 	 */
 	public Message readNextMessage() {
-		// TODO method
-		return null;
+		return mailbox.remove();
 	}
 
 	public abstract void readMail();
@@ -63,7 +60,7 @@ public abstract class Actor implements Comparable<Actor> {
 	 * to mailServer.
 	 */
 	public void send(Actor recipient, String text) {
-		// TODO method
+		mailServer.add(new Message(this, recipient, text));
 	}
 
 	/**
@@ -71,7 +68,7 @@ public abstract class Actor implements Comparable<Actor> {
 	 * mailServer.
 	 */
 	public void announce(String text) {
-		// TODO method
+		send(null, text);
 	}
 
 	/**

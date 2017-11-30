@@ -68,7 +68,11 @@ private boolean allSetFlag; // = false;
    */
   public void readMail()
   {
-    //TODO see comments
+    for(String item: items) {
+    	if(!myPossessions.contains(item)) {
+    		this.send(recipient, text);
+    	}
+    }
   }
 
   public String toString()
@@ -95,7 +99,6 @@ private boolean allSetFlag; // = false;
   /**
    * Checks whether this Kitten has one of each items
    */
-  @SuppressWarnings("unused")
 private boolean allSet()
   {
     for (String item : items)
